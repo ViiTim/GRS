@@ -8,6 +8,7 @@
 
 // Apply the java-library plugin to add support for Java Library
 apply plugin: 'java-library'
+libsDirName = 'C:/wildfly-10.1.0.CR1/standalone/deployments'
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -26,4 +27,5 @@ dependencies {
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
 }
+
 
