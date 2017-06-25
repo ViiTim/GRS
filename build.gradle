@@ -1,5 +1,6 @@
 
 
+
 plugins {
     id "com.moowork.node" version "1.1.1"
 }
@@ -8,25 +9,19 @@ node {
   npmVersion = '4.2.0'
   download = true
 }
-task webpack(type: NodeTask, dependsOn: 'npmInstall') {
-    script = project.file('node_modules/.bin/webpack')
-    args = ['--display-error-details']
+
+apply plugin: 'java-library'
+libsDirName = 'C:/wildfly-10.1.0.CR1/standalone/deployments'
+
+repositories {
+
+    jcenter()
 }
 
-task serve(type: NodeTask, dependsOn: 'webpack') {
-    script = project.file('node_modules/.bin/webpack-dev-server')
-    args = ['--content-base', 'src/main/resources/app']
-}
-const webpack = require("webpack");
+dependencies {
+	api 'org.apache.commons:commons-math3:3.6.1'
 
-var path = require('path');
+	implementation 'com.google.guava:guava:21.0'
 
-module.exports = {
-    entry : {
-    'homepage': "./src/homepage.js",
-  },
-    output : {
-        filename : '[name].js',
-        path : path.resolve(__dirname, 'src/main/resources/app'),
-  }
+    testImplementation 'junit:junit:4.12'
 }
