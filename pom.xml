@@ -52,6 +52,11 @@
     		<artifactId>postgresql</artifactId>
     		<version>42.1.4</version>
 		</dependency>
+		<dependency>
+    		<groupId>org.jooq</groupId>
+    		<artifactId>jooq</artifactId>
+    		<version>3.9.5</version>
+		</dependency>
     </dependencies>
     <build>
         <finalName>grs</finalName>
