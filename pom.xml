@@ -57,6 +57,12 @@
     		<artifactId>jooq</artifactId>
     		<version>3.9.5</version>
 		</dependency>
+		<dependency>
+    		<groupId>junit</groupId>
+    		<artifactId>junit</artifactId>
+    		<version>4.12</version>
+    		<scope>test</scope>
+		</dependency>
     </dependencies>
     <build>
         <finalName>grs</finalName>
@@ -65,6 +71,54 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+    			<groupId>org.jooq</groupId>
+                <artifactId>jooq-codegen-maven</artifactId>
+                <version>3.9.5</version>
+                
+                    <executions>
+        <!-- Generate the required class from the database -->
+        				<execution>
+            				<id>generate-postgres</id>
+            				<phase>generate-sources</phase>
+            				<goals>
+                				<goal>generate</goal>
+            				</goals>
+
+                        <configuration>
+                            <jdbc>
+                                <driver>org.postgresql.Driver</driver>
+                                <url>jdbc:postgresql://localhost:5432/GRS</url>
+                                <user>postgres</user>
+                                <password>Test123</password>
+                            </jdbc>
+                            <generator>
+                                <database>
+                                    <name>org.jooq.util.postgres.PostgresDatabase</name>
+                                    <includes>.*</includes>
+                                    <excludes></excludes>
+                                    <dateAsTimestamp>true</dateAsTimestamp>
+                                    <inputSchema>public</inputSchema>
+                                </database>
+                                <generate>
+                                    <records>true</records>
+								</generate>
+								<target>
+ 									<packageName>com.viitim.grs.database</packageName>
+ 									<directory>C:/Users/Viivi/Documents/GitHub/GRS/src/main/java/</directory>
+ 								</target>
+ 							</generator>
+    					</configuration>  
+    					</execution>
+    				</executions>
+    				<dependencies>
+                    <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>42.1.4</version>
+                    </dependency>
+				</dependencies>				
+    		</plugin>
         </plugins>
     </build>
 </project>
